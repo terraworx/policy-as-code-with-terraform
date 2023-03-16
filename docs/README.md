@@ -34,9 +34,11 @@ This course introduces students to the concept of policy as code, which involves
 #### Sentinel Policy Enforcement in Terraform Cloud and Enterprise
 
 * Terraform JSON output format
-* Terraform Imports
-
-
+* Terraform import library
+  * tfplan/v2
+  * tfconfig/v2
+  * tfstate/v2
+  * tfrun
 
 ### Course Requirements
 
