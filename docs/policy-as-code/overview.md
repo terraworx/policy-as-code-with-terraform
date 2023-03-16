@@ -2,7 +2,7 @@
 description: What is policy as code?
 ---
 
-# Introduction
+# Overview
 
 Policy as code (PaC) is an approach to managing policies that allows organizations to define and enforce their policies as executable code. PaC enables organizations to automate policy compliance checks and ensure that their policies are consistently applied across their infrastructure.
 
