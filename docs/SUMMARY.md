@@ -2,5 +2,5 @@
 
 * [Policy as Code with Terraform](README.md)
 * [Policy as Code](introduction/README.md)
-  * [Overview](policy-as-code/overview.md)
+  * [Overview](introduction/overview.md)
   * [Examples](introduction/examples.md)
