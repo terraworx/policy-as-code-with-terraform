@@ -1,0 +1,16 @@
+{
+	"records": [
+		{
+			"key": "eval",
+			"source": "../../imports/modules/eval/eval.sentinel",
+			"sourceSum": "",
+			"dest": "/Volumes/Data/GitHub/tf-compliance-demo/compliance/imports/modules/eval/eval.sentinel"
+		},
+		{
+			"key": "policy",
+			"source": "../../imports/modules/policy/policy.sentinel",
+			"sourceSum": "",
+			"dest": "/Volumes/Data/GitHub/tf-compliance-demo/compliance/imports/modules/policy/policy.sentinel"
+		}
+	]
+}

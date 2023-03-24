@@ -1,0 +1,18 @@
+import "exemptions"
+import "tfrun"
+
+exempt = func(wks_id, pol_id) {
+    results = filter exemptions.requests as _, request {
+        request.workspace_id is tfrun.workspace.id
+    }
+
+    is_exempt = all results as _, result {
+        result.policy_ids contains pol_id
+    }
+
+    if is_exempt {
+        print("A policy waiver is in place for workspace '" + tfrun.workspace.name + "'")
+    }
+
+    return is_exempt
+}

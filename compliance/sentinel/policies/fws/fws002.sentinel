@@ -1,0 +1,53 @@
+import "tfplan/v2" as tfplan
+import "eval"
+
+param valid_actions default [
+	["no-op"],
+	["create"],
+	["update"],
+]
+
+// Allowed server resource types
+allowed_vpc_names = [
+	"Primary VPC",
+	"Secondary VPC",
+]
+
+doc = {
+	"id":        "fws002",
+	"resource":  "fakewebservices_server",
+	"name":      "Ensure that allowed server VPC name is defined",
+	"reference": "https://github.com/hcrhall/sentinel-from-scratch/",
+}
+
+// Filter resources by type
+all_resources = filter tfplan.resource_changes as _, rc {
+		rc.type is doc.resource and
+			rc.mode is "managed" and
+			rc.change.actions in valid_actions
+}
+
+// Filter resources that violate a given condition
+violations = filter all_resources as _, r {
+		r.change.after.vpc not in allowed_vpc_names
+}
+
+// Build a summary report
+summary = {
+	"id":        doc.id,
+	"name":      doc.name,
+	"reference": doc.reference,
+	"violations": map violations as _, violation {
+		{
+			"name":    violation.change.after.name,
+			"address": violation.address,
+			"type":    violation.type,
+			"message": violation.change.after.vpc + " is not allowed.",
+		}
+	},
+}
+
+// All server resources should have a VPC of 'Primary VPC' or 'Secondary VPC'.
+main = rule {
+	eval.summary(summary, "stdout")
+}

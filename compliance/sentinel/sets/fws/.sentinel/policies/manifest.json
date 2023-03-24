@@ -1,0 +1,22 @@
+{
+	"records": [
+		{
+			"key": "fws003",
+			"source": "../../policies/sentinel/fws/fws003.sentinel",
+			"sourceSum": "",
+			"dest": "/Volumes/Data/GitHub/tf-compliance-demo/compliance/policies/sentinel/fws/fws003.sentinel"
+		},
+		{
+			"key": "fws001",
+			"source": "../../policies/sentinel/fws/fws001.sentinel",
+			"sourceSum": "",
+			"dest": "/Volumes/Data/GitHub/tf-compliance-demo/compliance/policies/sentinel/fws/fws001.sentinel"
+		},
+		{
+			"key": "fws002",
+			"source": "../../policies/sentinel/fws/fws002.sentinel",
+			"sourceSum": "",
+			"dest": "/Volumes/Data/GitHub/tf-compliance-demo/compliance/policies/sentinel/fws/fws002.sentinel"
+		}
+	]
+}
