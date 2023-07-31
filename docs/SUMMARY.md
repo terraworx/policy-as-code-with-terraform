@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Policy as Code with Terraform](README.md)
+* [Sentinel from Scratch](README.md)
 * [Policy as Code](introduction/README.md)
   * [Overview](introduction/overview.md)
   * [Examples](introduction/examples.md)
