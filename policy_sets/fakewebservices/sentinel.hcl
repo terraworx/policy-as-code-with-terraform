@@ -40,16 +40,16 @@ import "static" "exemptions" {
 // POLICIES
 // -------------------------------------------------------------
 policy "fws001" {
-  source            = "../../policies/sentinel/fws/fws001.sentinel"
+  source            = "../../policies/fakewebservices/fws001.sentinel"
   enforcement_level = "advisory"
 }
 
 policy "fws002" {
-  source            = "../../policies/sentinel/fws/fws002.sentinel"
+  source            = "../../policies/fakewebservices/fws002.sentinel"
   enforcement_level = "advisory"
 }
 
 policy "fws003" {
-  source            = "../../policies/sentinel/fws/fws003.sentinel"
+  source            = "../../policies/fakewebservices/fws003.sentinel"
   enforcement_level = "advisory"
 }
