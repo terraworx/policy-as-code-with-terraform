@@ -5,7 +5,7 @@ mock "tfplan/v2" {
 }
 
 import "module" "eval" {
-    source = "../../../../../imports/modules/eval/eval.sentinel"
+    source = "../../../../imports/modules/eval/eval.sentinel"
 }
 
 test {

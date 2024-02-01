@@ -3,7 +3,7 @@
 // -------------------------------------------------------------
 mock "tfplan/v2" {
   module {
-    source = "../../testdata/fws003/fail.sentinel"
+    source = "../../testdata/fws003/pass.sentinel"
   }
 }
 
@@ -17,26 +17,27 @@ mock "tfrun" {
 // MODULES
 // -------------------------------------------------------------
 import "module" "eval" {
-    source = "../../../../../imports/modules/eval/eval.sentinel"
+    source = "../../../../imports/modules/eval/eval.sentinel"
 }
 
 import "module" "policy" {
-    source = "../../../../../imports/modules/policy/policy.sentinel"
+    source = "../../../../imports/modules/policy/policy.sentinel"
 }
 
 // -------------------------------------------------------------
 // STATIC DATA
 // -------------------------------------------------------------
 import "static" "exemptions" {
-  source = "../../../imports/static/exemptions/exemptions.json"
+  source = "../../../../imports/static/exemptions/exemptions.json"
   format = "json"
 }
+
 
 // -------------------------------------------------------------
 // TESTS
 // -------------------------------------------------------------
 test {
   rules = {
-    main = false
+    main = true
   }
 }
