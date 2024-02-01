@@ -13,7 +13,7 @@ sentinel {
 // -------------------------------------------------------------
 import "plugin" "tfplan/v2" {
   config = {
-    "plan_path": "../../terraform/plan.json"
+    "plan_path": "../../../terraform/plan.json"
   }
 }
 
