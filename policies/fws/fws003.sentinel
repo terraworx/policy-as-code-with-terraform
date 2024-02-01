@@ -1,0 +1,56 @@
+import "tfplan/v2" as tfplan
+import "tfrun"
+import "eval"
+import "policy"
+
+param valid_actions default [
+	["no-op"],
+	["create"],
+	["update"],
+]
+
+// Allowed DB Size
+db_size = 128
+
+doc = {
+	"id":        "fws003",
+	"resource":  "fakewebservices_database",
+	"name":      "Ensure that all databases are sized accordingly",
+	"reference": "https://registry.terraform.io/providers/xissy/fakewebservices/latest/docs/resources/database",
+}
+
+// Filter resources by type
+all_resources = filter tfplan.resource_changes as _, rc {
+		rc.type is doc.resource and
+			rc.mode is "managed" and
+			rc.change.actions in valid_actions
+}
+
+// Filter resources that violate a given condition
+violations = filter all_resources as _, r {
+		r.change.after.size != db_size
+}
+
+// Build a summary report
+summary = {
+	"id":        doc.id,
+	"name":      doc.name,
+	"reference": doc.reference,
+	"violations": map violations as _, violation {
+		{
+			"name":    violation.change.after.name,
+			"address": violation.address,
+			"type":    violation.type,
+			"message": "Database size " + string(violation.change.after.size) + " is not allowed.",
+		}
+	},
+}
+
+// All database resources should have a database size of '128'.
+evaluation = rule when policy.exempt(tfrun.workspace.id, doc.id) is false {
+	eval.summary(summary, "stdout")
+}
+
+main = rule {
+	evaluation
+}

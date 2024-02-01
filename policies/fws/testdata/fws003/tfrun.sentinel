@@ -1,0 +1,47 @@
+id = "run-1RpxYCA5iei3xzNF"
+created_at = "2023-02-06T22:26:24.951Z"
+message = "Triggered via UI"
+commit_sha = "b2d6d29484e690311a74bdf1a120141ab283d687"
+speculative = false
+is_destroy = false
+refresh = true
+refresh_only = false
+replace_addrs = null
+target_addrs = null
+
+variables = {
+	"fake_token": {
+		"category":  "terraform",
+		"sensitive": true,
+	},
+	"fws_hostname": {
+		"category":  "terraform",
+		"sensitive": false,
+	},
+	"server_count": {
+		"category":  "terraform",
+		"sensitive": false,
+	},
+}
+
+organization = {
+	"name": "terraform-compliance",
+}
+
+workspace = {
+	"auto_apply":  false,
+	"created_at":  "2022-10-26T00:57:56.131Z",
+	"description": null,
+	"id":          "ws-KeeXu7DQYgG1sNUx",
+	"name":        "tf-compliance-demo",
+	"tags": [
+		"production",
+	],
+	"vcs_repo": {
+		"branch":             "",
+		"display_identifier": "hcrhall/tf-compliance-demo",
+		"identifier":         "hcrhall/tf-compliance-demo",
+		"ingress_submodules": false,
+	},
+	"working_directory": "terraform",
+}

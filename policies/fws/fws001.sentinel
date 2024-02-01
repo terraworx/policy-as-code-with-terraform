@@ -1,0 +1,54 @@
+import "tfplan/v2" as tfplan
+import "eval"
+
+param valid_actions default [
+	["no-op"],
+	["create"],
+	["update"],
+]
+
+// Allowed server resource types
+allowed_server_types = [
+	"t2.small",
+	"t2.medium",
+	"t2.large",
+]
+
+doc = {
+	"id":        "fws001",
+	"resource":  "fakewebservices_server",
+	"name":      "Ensure that allowed server type values are defined",
+	"reference": "https://github.com/hcrhall/sentinel-from-scratch/",
+}
+
+// Filter resources by type
+all_resources = filter tfplan.resource_changes as _, rc {
+		rc.type is doc.resource and
+			rc.mode is "managed" and
+			rc.change.actions in valid_actions
+}
+
+// Filter resources that violate a given condition
+violations = filter all_resources as _, r {
+		r.change.after.type not in allowed_server_types
+}
+
+// Build a summary report
+summary = {
+	"id":        doc.id,
+	"name":      doc.name,
+	"reference": doc.reference,
+	"violations": map violations as _, violation {
+		{
+			"name":    violation.change.after.name,
+			"address": violation.address,
+			"type":    violation.type,
+			"message": violation.change.after.type + " is not an allowed server type.",
+		}
+	},
+}
+
+// All server resources should have an instance type of 't2.small', 't2.medium', or 't2.large'.
+main = rule {
+	eval.summary(summary, "stdout")
+}
